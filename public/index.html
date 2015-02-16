@@ -46,15 +46,9 @@
         class="form-control input"
       />
 
-      <div>
-        <a onclick="$('.input').val('golden'); update();">golden</a>
-        <a onclick="$('.input').val('soggy'); update();">soggy</a>
-        <a onclick="$('.input').val('halogen'); update();">halogen</a>
-        <a onclick="$('.input').val('speak'); update();">speak</a>
-        <a onclick="$('.input').val('inch'); update();">inch</a>
-        <a onclick="$('.input').val('right'); update();">right</a>
-        <a onclick="$('.input').val('tower'); update();">tower</a>
+      <div class="words">
         <a class="pull-right" onclick="$('.input').val(''); update();">clear</a>
+        <a class="pull-right" onclick="save($('.input').val());">save this word</a>
       </div>
 
       <div class="well out"></div>
@@ -66,29 +60,7 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script>
-      var update = function() {
-        // get input
-        v = $(".input").val();
-
-        // clear the output if input is empty
-        if (v.length === 0) {
-          $(".out").css("display", "none");
-        } else {
-          $(".out").css("display", "block");
-        }
-
-        $.get("/ikeaify?word="+v, function(b, s) {
-          if (b !== "No word specified.") {
-            data = JSON.parse(b);
-            console.log(data)
-            $(".out").text(data.ikea);
-          };
-        });
-      };
-      $('.input').on('input', update);
-    </script>
-
+    <script type="text/javascript" src="ikea.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   </body>
 </html>
