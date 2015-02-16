@@ -11,7 +11,7 @@ var gen = function(word) {
     seed += word.charCodeAt(ct);
   });
   seed = seed / word.length
-  // console.log("SEED", seed)
+  console.log("SEED", seed)
 
   reps = word.split('').map(function(i) {
     return repeaters.indexOf(i) !== -1
@@ -35,7 +35,7 @@ var gen = function(word) {
             (i === 'o' && ct > word.length*0.5) ||
             (i === 'p' && ct > word.length*0.5) ||
             (i === 'q' && ct > word.length*0.5) ||
-            (i === 'r' && ct > word.length*0.5) ||
+            (i === 'r' && ct < word.length*0.25) ||
             (i === 's' && ct > word.length*0.6) ||
             (i === 't' && ct > word.length*0.5) ||
             (i === 'u' && ct > word.length*0.5) ||
@@ -53,7 +53,7 @@ var gen = function(word) {
     }
   });
 
-  out = out.join('').replace("o", "ö").replace("u", "ü").replace("aa", function() {
+  out = out.join('').replace("o", "ö").replace("u", "ü").replace("e", "ë").replace("aa", function() {
     return seed > 105 ? "k" : "aa"
   }).replace("ea", function() {
     return seed > 106.5 ? "ed" : "ea"
@@ -77,9 +77,12 @@ var gen = function(word) {
     return seed > 106 ? "pa" : "ht"
   }).replace("hh", function() {
     return seed > 109 ? "av" : "hh"
+  }).replace("am", function() {
+    return seed < 105 ? "dt" : "am"
   });
 
   return out;
 };
 
 module.exports = gen;
+console.log(gen("feel"));
