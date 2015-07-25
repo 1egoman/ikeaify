@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "^4.11.2",
     "express-static": "^1.0.3",
-    "random-words": "0.0.1"
+    "random-words": "0.0.1",
+    "request": "^2.60.0"
   },
   "devDependencies": {},
   "scripts": {
