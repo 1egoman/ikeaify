@@ -4,6 +4,10 @@ var ikea = require("./ikeame");
 var fs = require("fs")
 
 app.use(es(__dirname+"/public"));
+app.use(function(req, res, next) {
+  console.log(req.method, req.url, req.params, req.body);
+  next();
+})
 
 // ikeaifcation!
 app.get("/ikeaify", function(req, res) {
@@ -65,3 +69,4 @@ app.post("/userwords", function(req, res) {
 });
 
 app.listen(process.env.PORT || 8000);
+console.log(process.env.PORT || 8000)
